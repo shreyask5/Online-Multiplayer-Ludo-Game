@@ -1,6 +1,8 @@
 const session = require('express-session');
 const MongoDBStore = require('connect-mongodb-session')(session);
 
+console.log('Attempting to connect session store with URI:', process.env.MONGODB_URI);
+
 const store = new MongoDBStore({
     uri: process.env.MONGODB_URI,
     collection: 'sessions',
