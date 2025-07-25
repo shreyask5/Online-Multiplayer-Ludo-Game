@@ -34,7 +34,7 @@ const ReadyButton = ({ isReady }) => {
           )
         }
         sx={{
-          minWidth: { xs: 180, sm: 180, md: 180 },
+          minWidth: { xs: 120, sm: 100, md: 180 },
           background: checked
             ? 'linear-gradient(135deg, #10B981 0%, #059669 100%)'
             : 'transparent',

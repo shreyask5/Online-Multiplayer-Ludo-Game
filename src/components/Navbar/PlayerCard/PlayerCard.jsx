@@ -74,7 +74,7 @@ const PlayerCard = ({
       initial={{ opacity: 0, scale: 0.9 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ delay: playerIndex * 0.1 }}
-      style={{ width: '100%' }}
+      style={{ width: '100%', height: '100%' }} // Added height: '100%' for equal height cards
     >
       <Paper
         elevation={isMoving ? 8 : 2}
@@ -96,8 +96,8 @@ const PlayerCard = ({
           '&:hover': {
             transform: isPlayerActive ? 'scale(1.01)' : 'scale(1)',
           },
-          minHeight: 70,
-          height: { xs: 'auto', sm: 70 },
+          minHeight: { xs: 135, sm: 70, md: 70 }, // Ensures all cards have the same min height
+          height: { xs: 135, sm: 70, md: 70 },    // Ensures all cards have the same height
           display: 'flex',
           flexDirection: { xs: 'column', sm: 'row' },
           alignItems: 'center',
@@ -164,7 +164,7 @@ const PlayerCard = ({
           </Avatar>
 
           {/* Player Info */}
-          <Box sx={{ flex: 1, minWidth: 60, display: 'flex', flexDirection: 'column', justifyContent: 'center', ml: { xs: 0, sm: 1 }, mb: { xs: 0.5, sm: 0 }, flexShrink: 1 }}>
+          <Box sx={{ flex: 1, minWidth: 30, display: 'flex', flexDirection: 'column', justifyContent: 'center', ml: { xs: 0, sm: 1 }, mb: { xs: 0.5, sm: 0 }, flexShrink: 1 }}>
             <Typography
               variant={isMobile ? 'body2' : 'body1'}
               sx={{
@@ -180,7 +180,17 @@ const PlayerCard = ({
               {player.name || 'Waiting...'}
             </Typography>
             {isPlayerActive && (
-              <Box sx={{ display: 'flex', gap: 0.25, flexWrap: 'wrap', alignItems: 'center', mt: 0.25 }}>
+              <Box 
+                sx={{ 
+                  display: 'flex', 
+                  gap: 0.25, 
+                  flexWrap: 'wrap', 
+                  alignItems: 'center', 
+                  mt: 0.25,
+                  justifyContent: { xs: 'center', sm: 'flex-start' }, // Center on mobile, left on desktop
+                  width: '100%', // Ensures centering works
+                }}
+              >
                 <Chip
                   label={playerColor}
                   size="small"
