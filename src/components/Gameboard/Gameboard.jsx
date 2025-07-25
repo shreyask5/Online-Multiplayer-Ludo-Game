@@ -383,7 +383,7 @@ const Gameboard = () => {
                   display: 'flex',
                   justifyContent: 'center',
                   alignItems: 'center',
-                  my: { xs: 2, md: 3 },
+                  my: { xs: 0.5, md: 1 },
                 }}
               >
                 <Map 

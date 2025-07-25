@@ -130,7 +130,7 @@ const Dice = ({ rolledNumber, nowMoving, playerColor, movingPlayer }) => {
       </AnimatePresence>
 
       {/* Roll hint animation */}
-      {nowMoving && !hasRolledNumber && !isRolling && (
+      {!isMobile && nowMoving && !hasRolledNumber && !isRolling && (
         <motion.div
           style={{
             position: 'absolute',

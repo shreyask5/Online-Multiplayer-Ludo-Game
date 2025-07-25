@@ -96,8 +96,8 @@ const PlayerCard = ({
           '&:hover': {
             transform: isPlayerActive ? 'scale(1.01)' : 'scale(1)',
           },
-          minHeight: { xs: 135, sm: 70, md: 70 }, // Ensures all cards have the same min height
-          height: { xs: 135, sm: 70, md: 70 },    // Ensures all cards have the same height
+          minHeight: { xs: 145, sm: 70, md: 70 }, // Ensures all cards have the same min height
+          height: { xs: 145, sm: 70, md: 70 },    // Ensures all cards have the same height
           display: 'flex',
           flexDirection: { xs: 'column', sm: 'row' },
           alignItems: 'center',
@@ -242,7 +242,7 @@ const PlayerCard = ({
             sx={{
               display: 'flex',
               alignItems: 'center',
-              justifyContent: { xs: 'flex-start', sm: 'flex-end' },
+              justifyContent: { xs: 'center', sm: 'flex-end' },
               minWidth: 90,
               maxWidth: 120,
               ml: { xs: 0, sm: 1 },

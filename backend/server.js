@@ -37,7 +37,7 @@ require('./config/socket')(server);
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static('./build'));
     app.get('*', (req, res) => {
-        const indexPath = path.join(__dirname, './build/index.html');
+        const indexPath = path.join(__dirname, '../build/index.html');
         res.sendFile(indexPath);
     });
 }
