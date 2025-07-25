@@ -49,7 +49,7 @@ function App() {
   const [redirect, setRedirect] = useState();
 
   useEffect(() => {
-    const backendHost = process.env.REACT_APP_BACKEND_HOST || 'localhost';
+    const backendHost = process.env.REACT_APP_BACKEND_HOST || '80.225.238.29';
     const backendPort = process.env.REACT_APP_BACKEND_PORT || '8080';
     const backendUrl = `http://${backendHost}:${backendPort}`;
     const socket = io(backendUrl, { 
