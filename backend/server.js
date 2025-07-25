@@ -6,7 +6,8 @@ const mongoose = require('mongoose');
 require('dotenv').config();
 const { sessionMiddleware } = require('./config/session');
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 8080;
+const HOST = process.env.HOST || '0.0.0.0';
 
 const app = express();
 
@@ -26,7 +27,9 @@ app.use(
 );
 app.use(sessionMiddleware);
 
-const server = app.listen(PORT);
+const server = app.listen(PORT, HOST, () => {
+  console.log(`Server running on http://${HOST}:${PORT}`);
+});
 
 require('./config/database')(mongoose);
 require('./config/socket')(server);

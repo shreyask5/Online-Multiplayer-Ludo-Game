@@ -96,6 +96,12 @@ const PlayerCard = ({
           '&:hover': {
             transform: isPlayerActive ? 'scale(1.01)' : 'scale(1)',
           },
+          minHeight: 70,
+          height: { xs: 'auto', sm: 70 },
+          display: 'flex',
+          flexDirection: { xs: 'column', sm: 'row' },
+          alignItems: 'center',
+          justifyContent: 'center',
         }}
       >
         {/* Timer Overlay */}
@@ -124,10 +130,14 @@ const PlayerCard = ({
         <Box
           sx={{
             display: 'flex',
+            flexDirection: { xs: 'column', sm: 'row' },
             alignItems: 'center',
-            gap: { xs: 1, md: 2 },
+            gap: { xs: 0.25, sm: 0.5 },
             position: 'relative',
             zIndex: 1,
+            width: '100%',
+            minWidth: 0,
+            height: '100%',
           }}
         >
           {/* Avatar */}
@@ -139,6 +149,9 @@ const PlayerCard = ({
               border: '2px solid',
               borderColor: isPlayerActive ? 'rgba(255, 255, 255, 0.3)' : 'rgba(255, 255, 255, 0.1)',
               fontSize: { xs: '0.875rem', sm: '1rem', md: '1.25rem' },
+              alignSelf: 'center',
+              flexShrink: 0,
+              mb: { xs: 0.5, sm: 0 },
             }}
           >
             {player._id ? (
@@ -151,22 +164,23 @@ const PlayerCard = ({
           </Avatar>
 
           {/* Player Info */}
-          <Box sx={{ flex: 1, minWidth: 0 }}>
+          <Box sx={{ flex: 1, minWidth: 60, display: 'flex', flexDirection: 'column', justifyContent: 'center', ml: { xs: 0, sm: 1 }, mb: { xs: 0.5, sm: 0 }, flexShrink: 1 }}>
             <Typography
               variant={isMobile ? 'body2' : 'body1'}
               sx={{
                 fontWeight: 600,
                 overflow: 'hidden',
                 textOverflow: 'ellipsis',
-                whiteSpace: 'nowrap',
+                // allow wrapping
                 color: isPlayerActive ? 'text.primary' : 'text.secondary',
                 fontSize: { xs: '0.75rem', sm: '0.875rem', md: '1rem' },
+                lineHeight: 1.2,
               }}
             >
               {player.name || 'Waiting...'}
             </Typography>
             {isPlayerActive && (
-              <Box sx={{ display: 'flex', gap: 0.5, mt: 0.5, flexWrap: 'wrap' }}>
+              <Box sx={{ display: 'flex', gap: 0.25, flexWrap: 'wrap', alignItems: 'center', mt: 0.25 }}>
                 <Chip
                   label={playerColor}
                   size="small"
@@ -213,8 +227,18 @@ const PlayerCard = ({
             )}
           </Box>
 
-          {/* Action Area */}
-          <Box sx={{ display: 'flex', alignItems: 'center' }}>
+          {/* Action Area: Dice/ReadyButton, always right-aligned, never wraps */}
+          <Box
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: { xs: 'flex-start', sm: 'flex-end' },
+              minWidth: 90,
+              maxWidth: 120,
+              ml: { xs: 0, sm: 1 },
+              flexShrink: 0,
+            }}
+          >
             {started && !ended && isPlayerActive && (
               <Dice
                 rolledNumber={rolledNumber}

@@ -9,7 +9,6 @@ import {
   Paper,
   Typography,
   Button,
-  useMediaQuery,
 } from '@mui/material';
 import { motion, AnimatePresence } from 'framer-motion';
 import RestartAltIcon from '@mui/icons-material/RestartAlt';
@@ -190,7 +189,6 @@ const Gameboard = () => {
   const theme = useTheme();
   const socket = useContext(SocketContext);
   const context = useContext(PlayerDataContext);
-  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   
   const [pawns, setPawns] = useState([]);
   const [players, setPlayers] = useState([]);
@@ -320,235 +318,126 @@ const Gameboard = () => {
           alignItems: 'center',
           justifyContent: 'center',
           height: '100vh',
-          py: { xs: 1, sm: 2, md: 4 },
-          px: { xs: 1, sm: 2 },
+          py: { xs: 2, md: 4 },
         }}
       >
-        {/* Mobile Layout */}
-        {isMobile ? (
-          <Box
-            sx={{
-              display: 'flex',
-              flexDirection: 'column',
-              width: '100%',
-              height: '100%',
-              gap: 1,
-            }}
-          >
-            {/* Top Players (Horizontal) */}
-            <Box
-              sx={{
-                display: 'flex',
-                gap: 1,
-                flex: '0 0 auto',
-              }}
+        <Grid
+          container
+          spacing={2}
+          sx={{
+            maxWidth: { xs: '100%', md: 900, lg: 1000 },
+            margin: '0 auto',
+          }}
+        >
+          {/* Top Players */}
+          <Grid item xs={6} md={6}>
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
             >
-              <Box sx={{ flex: 1 }}>
-                <Navbar
-                  player={players[0]}
-                  playerIndex={0}
-                  started={started}
-                  time={time}
-                  isReady={isReady}
-                  rolledNumber={rolledNumber}
-                  nowMoving={nowMoving}
-                  movingPlayer={movingPlayer}
-                  ended={winner !== null}
-                  position="top"
-                />
-              </Box>
-              <Box sx={{ flex: 1 }}>
-                <Navbar
-                  player={players[3]}
-                  playerIndex={3}
-                  started={started}
-                  time={time}
-                  isReady={isReady}
-                  rolledNumber={rolledNumber}
-                  nowMoving={nowMoving}
-                  movingPlayer={movingPlayer}
-                  ended={winner !== null}
-                  position="top"
-                />
-              </Box>
-            </Box>
-
-            {/* Game Board */}
-            <Box
-              sx={{
-                flex: 1,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                minHeight: 0,
-              }}
-            >
-              <Map 
-                pawns={pawns} 
-                nowMoving={nowMoving} 
-                rolledNumber={rolledNumber}
+              <Navbar
+                player={players[0]}
+                playerIndex={0}
                 started={started}
+                time={time}
+                isReady={isReady}
+                rolledNumber={rolledNumber}
+                nowMoving={nowMoving}
+                movingPlayer={movingPlayer}
+                ended={winner !== null}
+                position="top"
               />
-            </Box>
-
-            {/* Bottom Players (Horizontal) */}
-            <Box
-              sx={{
-                display: 'flex',
-                gap: 1,
-                flex: '0 0 auto',
-              }}
-            >
-              <Box sx={{ flex: 1 }}>
-                <Navbar
-                  player={players[1]}
-                  playerIndex={1}
-                  started={started}
-                  time={time}
-                  isReady={isReady}
-                  rolledNumber={rolledNumber}
-                  nowMoving={nowMoving}
-                  movingPlayer={movingPlayer}
-                  ended={winner !== null}
-                  position="bottom"
-                />
-              </Box>
-              <Box sx={{ flex: 1 }}>
-                <Navbar
-                  player={players[2]}
-                  playerIndex={2}
-                  started={started}
-                  time={time}
-                  isReady={isReady}
-                  rolledNumber={rolledNumber}
-                  nowMoving={nowMoving}
-                  movingPlayer={movingPlayer}
-                  ended={winner !== null}
-                  position="bottom"
-                />
-              </Box>
-            </Box>
-          </Box>
-        ) : (
-          /* Desktop Layout */
-          <Grid
-            container
-            spacing={2}
-            sx={{
-              maxWidth: { xs: '100%', md: 900, lg: 1000 },
-              margin: '0 auto',
-            }}
-          >
-            {/* Top Players */}
-            <Grid item xs={6} md={6}>
-              <motion.div
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2 }}
-              >
-                <Navbar
-                  player={players[0]}
-                  playerIndex={0}
-                  started={started}
-                  time={time}
-                  isReady={isReady}
-                  rolledNumber={rolledNumber}
-                  nowMoving={nowMoving}
-                  movingPlayer={movingPlayer}
-                  ended={winner !== null}
-                  position="top"
-                />
-              </motion.div>
-            </Grid>
-            <Grid item xs={6} md={6}>
-              <motion.div
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 }}
-              >
-                <Navbar
-                  player={players[3]}
-                  playerIndex={3}
-                  started={started}
-                  time={time}
-                  isReady={isReady}
-                  rolledNumber={rolledNumber}
-                  nowMoving={nowMoving}
-                  movingPlayer={movingPlayer}
-                  ended={winner !== null}
-                  position="top"
-                />
-              </motion.div>
-            </Grid>
-
-            {/* Game Board */}
-            <Grid item xs={12}>
-              <motion.div
-                initial={{ scale: 0.9, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ delay: 0.4, duration: 0.5 }}
-              >
-                <Box
-                  sx={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    my: { xs: 2, md: 3 },
-                  }}
-                >
-                  <Map 
-                    pawns={pawns} 
-                    nowMoving={nowMoving} 
-                    rolledNumber={rolledNumber}
-                    started={started}
-                  />
-                </Box>
-              </motion.div>
-            </Grid>
-
-            {/* Bottom Players */}
-            <Grid item xs={6} md={6}>
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5 }}
-              >
-                <Navbar
-                  player={players[1]}
-                  playerIndex={1}
-                  started={started}
-                  time={time}
-                  isReady={isReady}
-                  rolledNumber={rolledNumber}
-                  nowMoving={nowMoving}
-                  movingPlayer={movingPlayer}
-                  ended={winner !== null}
-                  position="bottom"
-                />
-              </motion.div>
-            </Grid>
-            <Grid item xs={6} md={6}>
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.6 }}
-              >
-                <Navbar
-                  player={players[2]}
-                  playerIndex={2}
-                  started={started}
-                  time={time}
-                  isReady={isReady}
-                  rolledNumber={rolledNumber}
-                  nowMoving={nowMoving}
-                  movingPlayer={movingPlayer}
-                  ended={winner !== null}
-                  position="bottom"
-                />
-              </motion.div>
-            </Grid>
+            </motion.div>
           </Grid>
-        )}
+          <Grid item xs={6} md={6}>
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+            >
+              <Navbar
+                player={players[3]}
+                playerIndex={3}
+                started={started}
+                time={time}
+                isReady={isReady}
+                rolledNumber={rolledNumber}
+                nowMoving={nowMoving}
+                movingPlayer={movingPlayer}
+                ended={winner !== null}
+                position="top"
+              />
+            </motion.div>
+          </Grid>
+
+          {/* Game Board */}
+          <Grid item xs={12}>
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ delay: 0.4, duration: 0.5 }}
+            >
+              <Box
+                sx={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  my: { xs: 2, md: 3 },
+                }}
+              >
+                <Map 
+                  pawns={pawns} 
+                  nowMoving={nowMoving} 
+                  rolledNumber={rolledNumber}
+                  started={started}
+                />
+              </Box>
+            </motion.div>
+          </Grid>
+
+          {/* Bottom Players */}
+          <Grid item xs={6} md={6}>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5 }}
+            >
+              <Navbar
+                player={players[1]}
+                playerIndex={1}
+                started={started}
+                time={time}
+                isReady={isReady}
+                rolledNumber={rolledNumber}
+                nowMoving={nowMoving}
+                movingPlayer={movingPlayer}
+                ended={winner !== null}
+                position="bottom"
+              />
+            </motion.div>
+          </Grid>
+          <Grid item xs={6} md={6}>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6 }}
+            >
+              <Navbar
+                player={players[2]}
+                playerIndex={2}
+                started={started}
+                time={time}
+                isReady={isReady}
+                rolledNumber={rolledNumber}
+                nowMoving={nowMoving}
+                movingPlayer={movingPlayer}
+                ended={winner !== null}
+                position="bottom"
+              />
+            </motion.div>
+          </Grid>
+        </Grid>
       </Container>
 
       {/* Winner Dialog */}

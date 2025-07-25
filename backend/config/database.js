@@ -1,10 +1,9 @@
 module.exports = function (mongoose) {
     mongoose.set('useFindAndModify', false);
     mongoose
-        .connect(process.env.CONNECTION_URI, {
+        .connect(process.env.MONGODB_URI, {
             useNewUrlParser: true,
             useUnifiedTopology: true,
-            tls: true,
         })
         .then(() => {
             console.log('MongoDB Connected…');

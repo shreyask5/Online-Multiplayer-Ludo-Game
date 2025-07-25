@@ -134,3 +134,9 @@ button:hover {
     background-color: #ffffff;
     border-radius: 10px;
 }
+
+html, body, #root {
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: auto;
+}
