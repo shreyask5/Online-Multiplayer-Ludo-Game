@@ -1,17 +1,27 @@
-FROM node:14 as frontend
+# Build frontend
+FROM node:18 AS frontend
 WORKDIR /app
-COPY . /app
-RUN npm install --production
+COPY package*.json ./
+COPY ./src ./src
+COPY ./public ./public
+RUN npm install
 RUN npm run build
 
-FROM node:14 as backend
+# Build backend
+FROM node:18 AS backend
 WORKDIR /app
-COPY /backend /app
+COPY backend/package*.json ./
+COPY backend/ ./
 RUN npm install
 
-FROM node:14
+# Final image
+FROM node:18
 WORKDIR /app
-COPY --from=backend /app /app/
+
+# Copy backend code and dependencies
+COPY --from=backend /app /app
+
+# Copy frontend build output
 COPY --from=frontend /app/build /app/build
 
 EXPOSE 8080
