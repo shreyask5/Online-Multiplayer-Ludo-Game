@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/projects/ludo-online/demo/static/css/main.96bba96e.css",
-    "main.js": "/projects/ludo-online/demo/static/js/main.a0ce182b.js",
-    "static/media/map.jpg": "/projects/ludo-online/demo/static/media/map.24ce4973ba985f07279d.jpg",
-    "index.html": "/projects/ludo-online/demo/index.html",
-    "main.96bba96e.css.map": "/projects/ludo-online/demo/static/css/main.96bba96e.css.map",
-    "main.a0ce182b.js.map": "/projects/ludo-online/demo/static/js/main.a0ce182b.js.map"
+    "main.css": "/static/css/main.96bba96e.css",
+    "main.js": "/static/js/main.020dfcc9.js",
+    "static/media/map.jpg": "/static/media/map.24ce4973ba985f07279d.jpg",
+    "index.html": "/index.html",
+    "main.96bba96e.css.map": "/static/css/main.96bba96e.css.map",
+    "main.020dfcc9.js.map": "/static/js/main.020dfcc9.js.map"
   },
   "entrypoints": [
-    "projects/ludo-online/demo/static/css/main.96bba96e.css",
-    "projects/ludo-online/demo/static/js/main.a0ce182b.js"
+    "static/css/main.96bba96e.css",
+    "static/js/main.020dfcc9.js"
   ]
 }
