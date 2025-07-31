@@ -21,7 +21,11 @@ app.use(express.json());
 app.set('trust proxy', 1);
 app.use(
     cors({
-        origin: 'http://localhost:3000',
+        origin: [
+            'http://localhost:3000',
+            'https://shreyask.in',  // Add this
+            'http://80.225.238.29:8080'
+        ],
         credentials: true,
     })
 );
