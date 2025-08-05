@@ -49,7 +49,7 @@ function App() {
   const [redirect, setRedirect] = useState();
 
   useEffect(() => {
-    const backendUrl = `https://shreyask.in/ludo/api`;
+    const backendUrl = `https://ludo.shreyask.in/`;
     const socket = io(backendUrl, { 
       withCredentials: true,
       transports: ['websocket'],
