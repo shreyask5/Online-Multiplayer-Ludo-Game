@@ -5,7 +5,7 @@
   <img src="https://raw.githubusercontent.com/shreyask5/Online-Multiplayer-Ludo-Game/refs/heads/main/src/images/Ludo%20Logo.gif" alt="Ludo Logo" width="400"/>
 </p>
 
-## **🎮 Play Ludo Online Live**: [https://shreyask.in/projects/ludo-online/demo/](https://shreyask.in/projects/ludo-online/demo/)
+## **🎮 Play Ludo Online Live**: [ludo.shreyask.in](https://ludo.shreyask.in/)
 ## **📹 Watch Demo Video**: [View Demo Here](https://shreyas-s-k-s3-bucket.s3.ap-south-1.amazonaws.com/assets/ludo_online_demo+video.mp4)
 
 Ludo Online is a modern, fully‑responsive multiplayer web implementation of the classic board game Ludo. Built with the MERN stack and powered by Socket.IO for real‑time gameplay, this version features a completely redesigned UI/UX with Material‑UI v5, smooth animations, and mobile‑first design principles.
